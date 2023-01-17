@@ -1,4 +1,4 @@
-﻿namespace SignalRClient;
+﻿namespace SignalR.Commands;
 
 public enum SignalRMessageType
 {

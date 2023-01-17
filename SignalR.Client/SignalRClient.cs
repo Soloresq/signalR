@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.SignalR.Client;
+using SignalR.Commands;
 
 namespace SignalRClient;
 
@@ -7,15 +8,22 @@ public class SignalRClient : ISignalRClient
 {
     private HubConnection? connection;
     
-    public void Execute(ICommand signalRCommand)
+    public async void Execute(ICommand signalRCommand)
     {
         if (connection == null || connection.State != HubConnectionState.Connected)
         {
             throw new InvalidOperationException("The connection was not yet established.");
         }
-
-        var parameters = signalRCommand.GetRequestParameters();
-        connection.InvokeAsync(signalRCommand.MethodName, parameters);
+        
+        try
+        {
+            await connection.InvokeAsync(signalRCommand.MethodName, signalRCommand);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
     
     public async void Connect(string url)
@@ -24,6 +32,20 @@ public class SignalRClient : ISignalRClient
         .WithUrl(url)
         .WithAutomaticReconnect()
         .Build();
+
+        connection.On<BroadcastMessageCommand>(SignalRMessageType.BroadcastMessage.ToString(), async (command) =>
+            {
+                Console.WriteLine($"{DateTime.Now.ToShortTimeString()} {command.Username}:");
+                Console.WriteLine(command.Message);
+            }
+        );
+        
+        connection.On<GroupMessageCommand>(SignalRMessageType.GroupMessage.ToString(), async (command) =>
+            {
+                Console.WriteLine($"{DateTime.Now.ToShortTimeString()} {command.Username} (Group: {command.Group}):");
+                Console.WriteLine(command.Message);
+            }
+        );
 
         connection.Reconnecting += error =>
         {

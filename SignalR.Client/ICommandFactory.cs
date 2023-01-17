@@ -1,4 +1,6 @@
-﻿namespace SignalRClient;
+﻿using SignalR.Commands;
+
+namespace SignalRClient;
 
 public interface ICommandFactory
 {

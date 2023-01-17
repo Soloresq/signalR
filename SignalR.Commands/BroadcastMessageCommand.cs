@@ -1,4 +1,4 @@
-﻿namespace SignalRClient;
+﻿namespace SignalR.Commands;
 
 public class BroadcastMessageCommand : IMessageCommand
 {
@@ -19,13 +19,4 @@ public class BroadcastMessageCommand : IMessageCommand
     public string Message { get; init; }
 
     public static int ParameterCount => 1;
-
-    public IList<string> GetRequestParameters()
-    {
-        return new List<string>
-        {
-            Username,
-            Message
-        };
-    }
 }

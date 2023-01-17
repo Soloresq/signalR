@@ -1,4 +1,4 @@
-﻿namespace SignalRClient;
+﻿namespace SignalR.Commands;
 
 public class GroupMessageCommand : IMessageCommand
 {
@@ -22,14 +22,4 @@ public class GroupMessageCommand : IMessageCommand
     public string Username { get; init; }
     
     public string Message { get; init; }
-
-    public IList<string> GetRequestParameters()
-    {
-        return new List<string>
-        {
-            Group,
-            Username,
-            Message
-        };
-    }
 }

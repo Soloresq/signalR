@@ -1,4 +1,6 @@
-﻿namespace SignalRClient;
+﻿using SignalR.Commands;
+
+namespace SignalRClient;
 
 public class CommandFactory : ICommandFactory
 {
@@ -11,9 +13,9 @@ public class CommandFactory : ICommandFactory
             case SignalRMessageType.GroupMessage:
                 return TryCreateGroupMessageCommand(parameters, username);
             case SignalRMessageType.JoinGroup:
-                return TryCreateJoinGroupCommand(parameters);
+                return TryCreateJoinGroupCommand(parameters, username);
             case SignalRMessageType.LeaveGroup: 
-                return TryCreateLeaveGroupCommand(parameters);
+                return TryCreateLeaveGroupCommand(parameters, username);
             default:
                 throw new NotImplementedException();
         }
@@ -39,23 +41,23 @@ public class CommandFactory : ICommandFactory
         return new OperationResult<ICommand>(new GroupMessageCommand(username, parameters[0], parameters[1]));
     }
     
-    private OperationResult<ICommand> TryCreateJoinGroupCommand(IList<string> parameters)
+    private OperationResult<ICommand> TryCreateJoinGroupCommand(IList<string> parameters, string username)
     {
         if (parameters.Count != JoinGroupCommand.ParameterCount)
         {
             return new OperationResult<ICommand>("Invalid number of parameters.");
         }
 
-        return new OperationResult<ICommand>(new JoinGroupCommand(parameters[0]));
+        return new OperationResult<ICommand>(new JoinGroupCommand(parameters[0], username));
     }
     
-    private OperationResult<ICommand> TryCreateLeaveGroupCommand(IList<string> parameters)
+    private OperationResult<ICommand> TryCreateLeaveGroupCommand(IList<string> parameters, string username)
     {
         if (parameters.Count != LeaveGroupCommand.ParameterCount)
         {
             return new OperationResult<ICommand>("Invalid number of parameters.");
         }
 
-        return new OperationResult<ICommand>(new LeaveGroupCommand(parameters[0]));
+        return new OperationResult<ICommand>(new LeaveGroupCommand(parameters[0], username));
     }
 }

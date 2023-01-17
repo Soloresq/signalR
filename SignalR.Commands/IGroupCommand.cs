@@ -1,4 +1,4 @@
-﻿namespace SignalRClient;
+﻿namespace SignalR.Commands;
 
 public interface IGroupCommand : ICommand
 {

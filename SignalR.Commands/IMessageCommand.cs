@@ -1,8 +1,6 @@
-﻿namespace SignalRClient;
+﻿namespace SignalR.Commands;
 
 public interface IMessageCommand : ICommand
 {
-    public string Username { get; init; }
-    
     public string Message { get; init; }
 }

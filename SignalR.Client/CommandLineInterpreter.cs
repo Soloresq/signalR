@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using SignalR.Commands;
 
 namespace SignalRClient;
 
@@ -25,11 +26,11 @@ public class CommandLineInterpreter : ICommandLineInterpreter
             username = Console.ReadLine();
         }
 
-        Console.WriteLine("Type 'joinGroup <groupName>' to enter a group.");
-        Console.WriteLine("Type 'leaveGroup <groupName>' to remove a group.");
+        Console.WriteLine("Type 'JoinGroup <groupName>' to enter a group.");
+        Console.WriteLine("Type 'LeaveGroup <groupName>' to remove a group.");
         Console.WriteLine("Type 'BroadcastMessage <message>' to send a message to every member");
         Console.WriteLine("Type 'GroupMessage <groupName> <message>' to send a message to every member of the specified group");
-        Console.WriteLine("Type 'quit' or 'exit' to close the connection");
+        Console.WriteLine("Type 'Quit' or 'Exit' to close the connection");
         
         while (listen)
         {
@@ -53,7 +54,7 @@ public class CommandLineInterpreter : ICommandLineInterpreter
             return true;
         }
 
-        if (commandChunks[0].Value.Equals("quit") || commandChunks[0].Value.Equals("exit"))
+        if (commandChunks[0].Value.ToLower().Equals("quit") || commandChunks[0].Value.ToLower().Equals("exit"))
         {
             return false;
         }
