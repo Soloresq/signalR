@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.Client", "SignalR.Client\SignalR.Client.csproj", "{939ACD0B-169B-4CC2-BE00-BCBEBDA36D31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.Server", "SignalR.Server\SignalR.Server.csproj", "{C1A1F2D9-FA95-4E94-9F7E-BE72D5FC2A5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalR.Commands", "SignalR.Commands\SignalR.Commands.csproj", "{ACC64CF0-0C9F-4D3E-9957-D72F859449CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{939ACD0B-169B-4CC2-BE00-BCBEBDA36D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{939ACD0B-169B-4CC2-BE00-BCBEBDA36D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{939ACD0B-169B-4CC2-BE00-BCBEBDA36D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{939ACD0B-169B-4CC2-BE00-BCBEBDA36D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1A1F2D9-FA95-4E94-9F7E-BE72D5FC2A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1A1F2D9-FA95-4E94-9F7E-BE72D5FC2A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1A1F2D9-FA95-4E94-9F7E-BE72D5FC2A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1A1F2D9-FA95-4E94-9F7E-BE72D5FC2A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACC64CF0-0C9F-4D3E-9957-D72F859449CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC64CF0-0C9F-4D3E-9957-D72F859449CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC64CF0-0C9F-4D3E-9957-D72F859449CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC64CF0-0C9F-4D3E-9957-D72F859449CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

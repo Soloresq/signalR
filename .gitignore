@@ -1,0 +1,6 @@
+/.vs
+/.idea
+/SignalR.Client/.idea
+/SignalR.Server/.idea
+**/obj
+**/bin

@@ -1,0 +1,5 @@
+wwwroot/
+.idea/**
+/node_modules/
+/bin/Debug/net6.0/
+/obj/
