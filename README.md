@@ -44,3 +44,12 @@ To debug the client and server on one local machine, I opened the solution in on
 I opened only the SignalR.Server project in a second Rider instance __Instance #2__.
 I opened only the SignalR.Client project in a third Rider instance __Instance #3__.
 When editing code, I did this in __Instance #1__ and rebuild the whole solution and used __Instance #2__ and __Instance #3__ just for debugging.
+
+## Docker
+
+### Image
+
+#### Build
+- Go to the solution directory
+- Type `docker build -t signalr.server.img -f SignalR.Server\Dockerfile .` to build the server image based on the dockerfile
+

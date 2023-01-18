@@ -4,6 +4,10 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  devServer: {
+      host: '0.0.0.0',
+      allowedHosts: 'all'
+    },
   entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "wwwroot"),
