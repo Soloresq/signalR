@@ -17,6 +17,7 @@ COPY SignalR.Server/ ./
 RUN npm install
 # builds the package using npm packages and creates a /build directory in this staging environment 'build_npm'
 RUN npm run build
+COPY SignalR.Server/wwwroot ./wwwroot
 
 # use dotnet-sdk 6.0 image in new staging environment 'build'
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
