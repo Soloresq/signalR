@@ -47,7 +47,7 @@ When editing code, I did this in __Instance #1__ and rebuild the whole solution 
 
 ## Docker
 
-### Image
+### Server
 
 #### Build
 - Go to the solution directory
@@ -60,6 +60,16 @@ When editing code, I did this in __Instance #1__ and rebuild the whole solution 
 `dotnet dev-certs https --trust`
 - Type `docker run --name signalr.server -p 5001:5001 -e ASPNETCORE_URLS="https://*:5001" -e ASPNETCORE_HTTPS_PORT=5001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v $env:USERPROFILE\.aspnet\https:/https/ signalr.server.img` to run the docker container  
 The run command specifies the environment variables making kestrel listen to the docker containers machine at port 5001 and makes the previously exported developer ssl certificate available in the docker container
+- Access web app via [https://localhost:5001/](https://localhost:5001/)
+
+### Client
+
+#### Build
+- Go to solution directory
+- Type `docker build --no-cache -t signalr.client.img -f SignalR.Client\Dockerfile .`
+
+#### Run
+
 
 ### References
 - [Debugging ASP.NET Core in Docker](https://andrewlock.net/why-isnt-my-aspnetcore-app-in-docker-working/)

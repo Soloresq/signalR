@@ -1,0 +1,33 @@
+﻿version: "3"
+services:
+  signalr.client:
+    container_name: signalr.client
+    image: signalr.client.img
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    ports:
+      - 443:443
+    networks:
+      - back-tier
+
+  signalr.server:
+      container_name: signalr.server
+      ports:
+          - 5001:5001
+      environment:
+          - ASPNETCORE_URLS=https://*:5001
+          - ASPNETCORE_HTTPS_PORT=5001
+          - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+          - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      image: signalr.server.img
+      volumes:
+        - type: bind
+          source: '.'
+          target: '/https/'
+      networks:
+        - front-tier
+        - back-tier
+
+networks:
+  front-tier: {}
+  back-tier: {}
