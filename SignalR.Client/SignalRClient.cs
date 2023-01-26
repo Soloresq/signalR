@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.SignalR.Client;
-using SignalR.Client;
 using SignalR.Commands;
 
 namespace SignalR.Client;
@@ -34,19 +33,16 @@ public class SignalRClient : ISignalRClient
         .WithAutomaticReconnect()
         .Build();
 
-        connection.On<BroadcastMessageCommand>(SignalRMessageType.BroadcastMessage.ToString(), async (command) =>
-            {
-                Console.WriteLine($"{DateTime.Now.ToShortTimeString()} {command.Username}:");
-                Console.WriteLine(command.Message);
-            }
-        );
+        connection.On<BroadcastMessageCommand>(SignalRMessageType.BroadcastMessage.ToString(), (command) => OnBroadcastMessageReceived(command.Username, command.Message));
         
-        connection.On<GroupMessageCommand>(SignalRMessageType.GroupMessage.ToString(), async (command) =>
-            {
-                Console.WriteLine($"{DateTime.Now.ToShortTimeString()} {command.Username} (Group: {command.Group}):");
-                Console.WriteLine(command.Message);
-            }
+        connection.On<GroupMessageCommand>(SignalRMessageType.GroupMessage.ToString(), (command) => OnGroupMessageReceived(command.Username, command.Group, command.Message)
+            //{
+            //    Console.WriteLine($"{DateTime.Now.ToShortTimeString()} {command.Username} (Group: {command.Group}):");
+            //    Console.WriteLine(command.Message);
+            //}
         );
+
+        // TODO: Add the group operations ...
 
         connection.Reconnecting += error =>
         {
@@ -73,6 +69,26 @@ public class SignalRClient : ISignalRClient
         };
 
         await ConnectWithRetryAsync(connection, new CancellationToken());
+    }
+
+    public async void OnBroadcastMessageReceived(string sender, string message)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async void OnGroupMessageReceived(string sender, string group, string message)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async void OnUserJoinedGroup(string sender, string group, string message)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async void OnUserLeftGroup(string sender, string group, string message)
+    {
+        throw new NotImplementedException();
     }
 
     static async Task<bool> ConnectWithRetryAsync(HubConnection connection, CancellationToken token)

@@ -15,7 +15,6 @@ namespace SignalR.Maui.Client
                 });
             builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
             builder.Services.AddSingleton<ISignalRClient, SignalRClient>();
-            builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainPageViewModel>();
 
             return builder.Build();

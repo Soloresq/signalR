@@ -60,7 +60,15 @@ namespace SignalR.Maui.Client
             ChatHistory = stringBuilder.ToString();
             UserInput = string.Empty;
 
-            //this.signalRClient.Execute()
+            var result = commandFactory.TryCreateCommand(Commands.SignalRMessageType.BroadcastMessage, new List<string> { UserInput }, Username);
+            if(result.Success)
+            {
+                signalRClient.Execute(result.Result!);
+            }
+            else
+            {
+                stringBuilder.AppendLine(result.ErrorMessage);
+            }
         }
     }
 }

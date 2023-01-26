@@ -2,10 +2,11 @@
 {
     public partial class App : Application
     {
-        public App(MainPage mainPage)
+        public App(MainPageViewModel mainPageViewModel)
         {
             InitializeComponent();
-            MainPage = mainPage;
+            // Workaround see https://github.com/dotnet/maui/issues/11485
+            MainPage = new MainPage(mainPageViewModel);
         }
 
         //protected override void CleanUp()
