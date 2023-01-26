@@ -1,4 +1,4 @@
-﻿namespace SignalRClient;
+﻿namespace SignalR.Client;
 
 public class OperationResult<T> where T : class
 {
@@ -7,7 +7,7 @@ public class OperationResult<T> where T : class
         Success = false;
         ErrorMessage = errorMessage;
     }
-    
+
     public OperationResult(T? result = null)
     {
         Success = true;
@@ -15,8 +15,8 @@ public class OperationResult<T> where T : class
     }
 
     public string? ErrorMessage { get; init; }
-    
-    public bool Success { get; init; } 
-    
+
+    public bool Success { get; init; }
+
     public T? Result { get; init; }
 }

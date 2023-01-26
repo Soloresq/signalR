@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using SignalR.Commands;
 
-namespace SignalRClient;
+namespace SignalR.Client;
 
 public class CommandLineInterpreter : ICommandLineInterpreter
 {

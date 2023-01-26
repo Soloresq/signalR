@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;net6.0-android</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx'))">$(TargetFrameworks);net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-ios;net6.0-maccatalyst;net6.0-windows10.0.19041.0</TargetFrameworks>
+        <OutputType Condition="'$(TargetFramework)' != 'net6.0'">Exe</OutputType>
+
+        <!-- .NET MAUI -->
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+
+        <!-- Project Options -->
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>SignalR.Maui.Client</RootNamespace>
+
+        <!-- Display name -->
+        <ApplicationTitle>SignalR.Maui.Client</ApplicationTitle>
+
+        <!-- App Identifier -->
+        <ApplicationId>com.companyname.signalr.maui.client</ApplicationId>
+        <ApplicationIdGuid>A9A0810C-6BA0-4DA6-BB17-FE3DB687AFD8</ApplicationIdGuid>
+
+        <!-- Versions -->
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <!-- Target Platform Options -->
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+
+        <!-- Minimum Target OS Version for Windows Platform -->
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- App Icon -->
+        <MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
+        <!-- Splash Screen -->
+        <MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" BaseSize="128,128" />
+        <!-- Images -->
+        <MauiImage Include="Resources\Images\*" />
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+        <!-- Custom Fonts -->
+        <MauiFont Include="Resources\Fonts\*" />
+        <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="SignalR.Maui.Client.code-workspace" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SignalR.Client\SignalR.Client.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="MainPage.xaml.cs">
+        <DependentUpon>MainPage.xaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+
+</Project>

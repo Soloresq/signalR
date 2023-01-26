@@ -1,4 +1,4 @@
-﻿namespace SignalRClient;
+﻿namespace SignalR.Client;
 
 public interface ICommandLineInterpreter
 {

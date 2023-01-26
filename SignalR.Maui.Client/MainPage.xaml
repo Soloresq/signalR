@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SignalR.Maui.Client"
+             x:Class="SignalR.Maui.Client.MainPage">
+
+    <Grid 
+        Padding="10" 
+        Margin="12" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Editor 
+            Grid.Row="0" 
+            IsReadOnly="True" 
+            BackgroundColor="LightGray"
+            Text="{Binding ChatHistory}">
+        </Editor>
+        <StackLayout 
+            Grid.Row="1" 
+            Orientation="Horizontal"
+            Margin="0, 5, 0, 0">
+            <Entry 
+                Text="{Binding UserInput}" 
+                HorizontalOptions="FillAndExpand" 
+                ReturnCommand="{Binding SendCommand}"
+                Margin="0,0,5,0"/>
+            <Button
+                Command="{Binding SendCommand}"
+                HorizontalOptions="Center"
+                SemanticProperties.Hint="Sends the entered message"
+                Style="{StaticResource PrimaryAction}"
+                Text="Send" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,6 +1,6 @@
 ﻿using SignalR.Commands;
 
-namespace SignalRClient;
+namespace SignalR.Client;
 
 public class CommandFactory : ICommandFactory
 {
@@ -14,7 +14,7 @@ public class CommandFactory : ICommandFactory
                 return TryCreateGroupMessageCommand(parameters, username);
             case SignalRMessageType.JoinGroup:
                 return TryCreateJoinGroupCommand(parameters, username);
-            case SignalRMessageType.LeaveGroup: 
+            case SignalRMessageType.LeaveGroup:
                 return TryCreateLeaveGroupCommand(parameters, username);
             default:
                 throw new NotImplementedException();
@@ -27,20 +27,20 @@ public class CommandFactory : ICommandFactory
         {
             return new OperationResult<ICommand>("Invalid number of parameters.");
         }
-        
+
         return new OperationResult<ICommand>(new BroadcastMessageCommand(username, parameters[0]));
     }
-    
+
     private OperationResult<ICommand> TryCreateGroupMessageCommand(IList<string> parameters, string username)
     {
         if (parameters.Count != GroupMessageCommand.ParameterCount)
         {
             return new OperationResult<ICommand>("Invalid number of parameters.");
         }
-        
+
         return new OperationResult<ICommand>(new GroupMessageCommand(username, parameters[0], parameters[1]));
     }
-    
+
     private OperationResult<ICommand> TryCreateJoinGroupCommand(IList<string> parameters, string username)
     {
         if (parameters.Count != JoinGroupCommand.ParameterCount)
@@ -50,7 +50,7 @@ public class CommandFactory : ICommandFactory
 
         return new OperationResult<ICommand>(new JoinGroupCommand(parameters[0], username));
     }
-    
+
     private OperationResult<ICommand> TryCreateLeaveGroupCommand(IList<string> parameters, string username)
     {
         if (parameters.Count != LeaveGroupCommand.ParameterCount)

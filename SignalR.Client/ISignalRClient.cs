@@ -1,6 +1,6 @@
 ﻿using SignalR.Commands;
 
-namespace SignalRClient;
+namespace SignalR.Client;
 
 public interface ISignalRClient
 {

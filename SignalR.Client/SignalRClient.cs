@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.SignalR.Client;
+using SignalR.Client;
 using SignalR.Commands;
 
-namespace SignalRClient;
+namespace SignalR.Client;
 
 public class SignalRClient : ISignalRClient
 {
